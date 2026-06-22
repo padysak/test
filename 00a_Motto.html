@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motto — Vo Svetle Pravdy</title>
+<style>
+:root{--de-c:#000;--sk-c:#000;--de-w:400;--sk-w:400;--de-d:none;--sk-d:none;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',Roboto,system-ui,Arial,sans-serif;color:#111;background:#f4f4f2;line-height:1.55;}
+a{color:inherit;text-decoration:none;}
+#bar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e2e2dd;}
+.bar-in{display:flex;align-items:center;gap:8px;max-width:820px;margin:0 auto;padding:7px 12px;}
+#back{flex:none;display:inline-block;background:#f0f0ec;border:1px solid #ddd;border-radius:8px;padding:6px 11px;cursor:pointer;font-size:.85em;white-space:nowrap;}
+#back:hover{background:#e7e7e2;}
+#doctitle{flex:1;min-width:0;color:#777;font-size:.8em;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.menus{flex:none;position:relative;display:flex;gap:6px;}
+.drop-btn{background:#f0f0ec;border:1px solid #ddd;border-radius:8px;padding:6px 11px;cursor:pointer;font-size:.85em;white-space:nowrap;}
+.drop-btn:hover{background:#e7e7e2;}
+.drop-btn.on{background:#111;color:#fff;border-color:#111;}
+.dropdown{position:absolute;top:calc(100% + 7px);right:0;z-index:30;display:none;background:#fff;border:1px solid #d8d8d2;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.16);padding:13px;width:300px;max-width:calc(100vw - 20px);}
+.dropdown.open{display:block;}
+.dsec{margin:0 0 13px;}
+.dsec:last-child{margin-bottom:0;}
+.dlabel{font-size:.7em;letter-spacing:.05em;text-transform:uppercase;color:#8a8a8a;margin:0 0 7px;font-weight:600;}
+.lookrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
+.dhint{margin-top:12px;padding-top:11px;border-top:1px solid #eee;font-size:.78em;color:#666;line-height:1.5;}
+.modes{display:flex;flex-wrap:wrap;gap:5px;}
+.modes button,.grans button{background:#f0f0ec;border:1px solid #ddd;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:.85em;}
+.modes button.on,.grans button.on{background:#111;color:#fff;border-color:#111;}
+.grans{display:flex;flex-wrap:wrap;gap:5px;}
+.grow.off{opacity:.4;pointer-events:none;}
+.swatches{display:inline-flex;gap:6px;}
+.sw{width:22px;height:22px;border-radius:50%;border:2px solid #ccc;cursor:pointer;padding:0;}
+.sw.on{border-color:#111;box-shadow:0 0 0 2px #fff,0 0 0 4px #111;}
+.tg{width:31px;height:31px;border:1px solid #ddd;border-radius:8px;background:#f0f0ec;cursor:pointer;font-size:.9em;line-height:1;}
+.tg[data-t$="B"]{font-weight:700;}
+.tg[data-t$="U"]{text-decoration:underline;}
+.tg.on{background:#111;color:#fff;border-color:#111;}
+@media (max-width:560px){#doctitle{display:none;}}
+#content{max-width:820px;margin:0 auto;padding:22px 18px 70px;font-size:1.07em;}
+.title{text-align:center;font-weight:700;font-size:1.3em;margin:2px 0;color:#111;}
+.tde{font-family:'Times New Roman',Georgia,serif;margin-top:6px;}
+.tsk{font-family:'Segoe UI',Calibri,system-ui,sans-serif;margin-bottom:14px;}
+.para{margin:0;text-align:justify;text-indent:1.6em;}
+.mottobox{padding:13vh 0 14vh;}
+.motto-de,.motto-sk{font-family:'Times New Roman',Georgia,serif;font-style:italic;text-align:center;font-size:1.55em;line-height:1.5;margin:0 auto;}
+.motto-de{color:var(--de-c);font-weight:var(--de-w);text-decoration:var(--de-d);}
+.motto-sk{color:var(--sk-c);font-weight:var(--sk-w);text-decoration:var(--sk-d);}
+.mottobox p + p{margin-top:2.2em;}
+@media (max-width:560px){.motto-de,.motto-sk{font-size:1.22em;}}
+.sig{margin-top:16px;text-align:right;}
+.de{font-family:'Times New Roman',Georgia,serif;color:var(--de-c);font-weight:var(--de-w);text-decoration:var(--de-d);}
+.sk{font-family:'Segoe UI',Calibri,system-ui,sans-serif;color:var(--sk-c);font-weight:var(--sk-w);text-decoration:var(--sk-d);}
+.sep{color:#111;}
+.pnum{color:#111;font-weight:700;font-size:.62em;margin-right:.25em;}
+.sm{font-size:.82em;}
+em{font-style:italic;}
+.w{cursor:pointer;border-radius:3px;}
+.w:hover{outline:2px solid rgba(31,111,235,.35);outline-offset:1px;background:rgba(31,111,235,.07);}
+.menu{position:absolute;z-index:50;background:#fff;border:1px solid #cfcfd4;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:12px;width:300px;max-width:calc(100vw - 16px);max-height:74vh;overflow:auto;font-family:'Segoe UI',system-ui,sans-serif;color:#1a1a1a;}
+.menu .mtitle{font-size:12px;color:#6b6b72;margin:0 2px 8px;}
+.menu .mword{font-weight:700;color:#1a1a1a;}
+.menu .dpos{font-size:13px;color:#2a2a2a;margin:0 2px 8px;}
+.menu .dsk{font-size:13px;color:#2a2a2a;margin:8px 2px 0;line-height:1.45;}
+.menu .dnote{font-size:12px;color:#6b6b72;margin:4px 2px 0;}
+.menu table.dtab{border-collapse:collapse;width:100%;font-size:12.5px;margin:6px 0 2px;}
+.menu table.dtab th,.menu table.dtab td{border:1px solid #e3e3e6;padding:3px 7px;text-align:left;}
+.menu table.dtab th{background:#f5f5f7;color:#444;font-weight:600;}
+.menu .dlinks{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.menu a.dlink{font-size:12px;text-decoration:none;color:#1f6feb;border:1px solid #cfe0ff;background:#f3f8ff;border-radius:6px;padding:5px 9px;}
+.menu a.dlink:hover{background:#e6f0ff;}
+.menu .mclose{margin-top:10px;text-align:right;}
+.menu .mclose button{font:inherit;font-size:12px;padding:4px 10px;border:1px solid #cfcfd4;border-radius:6px;background:#fff;cursor:pointer;}
+</style>
+</head>
+<body>
+  <div id="bar">
+    <div class="bar-in">
+      <a id="back" href="index.html">← Zoznam</a>
+      <span id="doctitle"></span>
+      <div class="menus">
+        <button class="drop-btn" data-target="menu-view" aria-haspopup="true">Zobrazenie ▾</button>
+        <button class="drop-btn" data-target="menu-look" aria-haspopup="true">Vzhľad ▾</button>
+        <div class="dropdown" id="menu-view">
+          <div class="dsec">
+            <div class="dlabel">Režim zobrazenia</div>
+            <div class="modes">
+              <button data-mode="de" title="Iba nemecký text">Iba nemecký</button>
+              <button data-mode="sk" title="Iba slovenský text">Iba slovenský</button>
+              <button data-mode="desk" title="Nemecko-slovenské striedavé">DE–SK</button>
+              <button data-mode="skde" title="Slovensko-nemecké striedavé">SK–DE</button>
+            </div>
+          </div>
+          <div class="dsec grow">
+            <div class="dlabel">Striedať po</div>
+            <div class="grans">
+              <button data-gran="phrase" title="Striedať po frázach">Frázach</button>
+              <button data-gran="sentence" title="Striedať po vetách">Vetách</button>
+              <button data-gran="paragraph" title="Striedať po odstavcoch">Odstavcoch</button>
+            </div>
+          </div>
+          <div class="dhint">Tip: na <b>nemecké slová</b> v texte sa dá klikať — zobrazí sa ich <b>preklad</b> a <b>ohýbanie</b> (skloňovanie podstatných mien, časovanie slovies).</div>
+        </div>
+        <div class="dropdown" id="menu-look">
+          <div class="dsec">
+            <div class="dlabel">Nemčina</div>
+            <div class="lookrow">
+              <span class="swatches" data-lang="de"></span>
+              <button class="tg" data-t="deB" title="Tučné">B</button>
+              <button class="tg" data-t="deU" title="Podčiarknuté">U</button>
+            </div>
+          </div>
+          <div class="dsec">
+            <div class="dlabel">Slovenčina</div>
+            <div class="lookrow">
+              <span class="swatches" data-lang="sk"></span>
+              <button class="tg" data-t="skB" title="Tučné">B</button>
+              <button class="tg" data-t="skU" title="Podčiarknuté">U</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="content"></div>
+<div id="menu" class="menu" hidden></div>
+<script>
+const DOC = {"id": "motto", "title": null, "numbered": false, "paragraphs": [[{"de": [{"t": "Wer", "id": 0}, {"t": " "}, {"t": "sich", "id": 1}, {"t": " "}, {"t": "nicht", "id": 2}, {"t": " "}, {"t": "müht", "id": 3}, {"t": ",\n"}, {"t": "das", "id": 4}, {"t": " "}, {"t": "Wort", "id": 5}, {"t": " "}, {"t": "des", "id": 6}, {"t": " "}, {"t": "Herrn", "id": 7}, {"t": " "}, {"t": "auch", "id": 8}, {"t": " "}, {"t": "richtig", "id": 9}, {"t": " "}, {"t": "zu", "id": 10}, {"t": " "}, {"t": "erfassen", "id": 11}, {"t": ",\n"}, {"t": "macht", "id": 12}, {"t": " "}, {"t": "sich", "id": 13}, {"t": " "}, {"t": "schuldig", "id": 14}, {"t": "!"}], "sk": [{"t": "Kto sa nenamáha\nSlovo Pánovo aj správne pochopiť,\npreviňuje sa!"}]}]]};
+const LEX = {"0": {"c": "PRON", "s": 0, "l": "wer"}, "1": {"c": "PRON", "s": 0}, "2": {"c": "PART", "s": 0}, "3": {"c": "VERB", "s": 0, "l": "mühen"}, "4": {"c": "ART", "s": 0, "l": "der"}, "5": {"c": "NOUN_N", "s": 0, "d": {"nom_sg": "Wort", "nom_pl": "Wörter", "gen_sg": "Worts", "gen_pl": "Wörter", "dat_sg": "Wort", "dat_pl": "Wörtern", "akk_sg": "Wort", "akk_pl": "Wörter"}}, "6": {"c": "ART", "s": 0, "l": "der"}, "7": {"c": "NOUN_M", "s": 0, "l": "Herr", "d": {"nom_sg": "Herr", "nom_pl": "Herren", "gen_sg": "Herrn", "gen_pl": "Herren", "dat_sg": "Herrn", "dat_pl": "Herren", "akk_sg": "Herrn", "akk_pl": "Herren"}}, "8": {"c": "ADV", "s": 0}, "9": {"c": "ADJ", "s": 0}, "10": {"c": "PART", "s": 0}, "11": {"c": "VERB", "s": 0}, "12": {"c": "VERB", "s": 0, "l": "machen"}, "13": {"c": "PRON", "s": 0}, "14": {"c": "ADJ", "s": 0}};
+const SEGS = ["Kto sa nenamáha\nSlovo Pánovo aj správne pochopiť,\npreviňuje sa!"];
+const INFO = {"VERB": ["Sloveso", "verb"], "NOUN_M": ["Podstatné meno — mužský rod (der)", "noun"], "NOUN_F": ["Podstatné meno — ženský rod (die)", "noun"], "NOUN_N": ["Podstatné meno — stredný rod (das)", "noun"], "ADJ": ["Prídavné meno", "other"], "ADV": ["Príslovka", "other"], "PRON": ["Zámeno / určovateľ", "other"], "ART": ["Člen", "other"], "PREP": ["Predložka", "other"], "CONJ": ["Spojka", "other"], "PART": ["Častica", "other"], "NAME": ["Vlastné meno", "other"]};
+
+const PRESETS=[
+ {n:'Čierna',c:'#000000'},
+ {n:'Modrá',c:'#1a56db'},
+ {n:'Červená',c:'#c0392b'},
+ {n:'Zelená',c:'#1e7e34'},
+ {n:'Fialová',c:'#7a3ff2'},
+ {n:'Hnedá',c:'#7a5230'}
+];
+const LS='posolstvo_site_v2';
+const def={mode:'desk',gran:'phrase',deC:'#000000',skC:'#000000',deB:true,deU:false,skB:false,skU:false};
+let state=Object.assign({},def);
+try{const s=JSON.parse(localStorage.getItem(LS));if(s)state=Object.assign(state,s);}catch(e){}
+function save(){try{localStorage.setItem(LS,JSON.stringify(state));}catch(e){}}
+
+const $=s=>document.querySelector(s);
+const content=$('#content'),menu=$('#menu');
+const SEP='<span class="sep"> — </span>';
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function runs(rs){return rs.map(r=>{if(r.br)return '<br>';let t=esc(r.t);
+  if(r.id!==undefined)t='<span class="w" data-id="'+r.id+'">'+t+'</span>';
+  if(r.i)t='<em>'+t+'</em>';
+  if(r.s)t='<span class="sm">'+t+'</span>';
+  return t;}).join('');}
+function deS(p){return '<span class="de">'+runs(p.de)+'</span>';}
+function skS(p){return '<span class="sk">'+runs(p.sk)+'</span>';}
+
+function segList(pairs,mode){
+  const o=[];
+  if(mode==='de') pairs.forEach(p=>o.push(deS(p)));
+  else if(mode==='sk') pairs.forEach(p=>o.push(skS(p)));
+  else if(mode==='skde') pairs.forEach(p=>{o.push(skS(p));o.push(deS(p));});
+  else pairs.forEach(p=>{o.push(deS(p));o.push(skS(p));});
+  return o;
+}
+function joinSegs(segs,mode){return (mode==='de'||mode==='sk')?segs.join(' '):segs.join(SEP);}
+function deText(p){return p.de.map(r=>r.t).join('');}
+function endsSentence(p){return /[.!?]$/.test(deText(p).trim());}
+function mergePairs(pairs){
+  const de=[],sk=[];
+  function app(arr,rs){
+    if(arr.length){const prev=arr[arr.length-1].t,nxt=rs.length?rs[0].t:'';
+      if(prev&&nxt&&!/\s$/.test(prev)&&!/^\s/.test(nxt))arr.push({t:' '});}
+    rs.forEach(r=>arr.push(r));
+  }
+  pairs.forEach(p=>{app(de,p.de);app(sk,p.sk);});
+  return {de,sk};
+}
+function groupBySentence(pairs){
+  const groups=[];let cur=[];
+  pairs.forEach(p=>{cur.push(p);if(endsSentence(p)){groups.push(cur);cur=[];}});
+  if(cur.length)groups.push(cur);
+  return groups.map(mergePairs);
+}
+function regroup(pairs,gran){
+  if(gran==='paragraph')return [mergePairs(pairs)];
+  if(gran==='sentence')return groupBySentence(pairs);
+  return pairs;
+}
+function para(pairs,i,numbered,mode){
+  const units=(mode==='de'||mode==='sk')?pairs:regroup(pairs,state.gran);
+  const num=numbered?'<sup class="pnum">'+(i+1)+'</sup>':'';
+  return '<p class="para">'+num+joinSegs(segList(units,mode),mode)+'</p>';
+}
+function motto(pairs,mode){
+  const nl=s=>s.replace(/\n/g,'<br>');
+  const de='<p class="motto-de">'+nl(pairs.map(p=>runs(p.de)).join(' '))+'</p>';
+  const sk='<p class="motto-sk">'+nl(pairs.map(p=>runs(p.sk)).join(' '))+'</p>';
+  let inner;
+  if(mode==='de')inner=de; else if(mode==='sk')inner=sk;
+  else if(mode==='skde')inner=sk+de; else inner=de+sk;
+  return '<div class="mottobox">'+inner+'</div>';
+}
+function titleHTML(doc,mode){
+  if(!doc.title) return '';
+  const d='<div class="title tde">'+esc(doc.title.de)+'</div>';
+  const s='<div class="title tsk">'+esc(doc.title.sk)+'</div>';
+  if(mode==='de') return d;
+  if(mode==='sk') return s;
+  if(mode==='skde') return s+d;
+  return d+s;
+}
+function sigHTML(doc,mode){
+  if(!doc.signature) return '';
+  const d='<span class="de">'+esc(doc.signature.de)+'</span>';
+  const s='<span class="sk">'+esc(doc.signature.sk)+'</span>';
+  let inner;
+  if(mode==='de') inner=d; else if(mode==='sk') inner=s;
+  else if(mode==='skde') inner=s+SEP+d; else inner=d+SEP+s;
+  return '<p class="sig">'+inner+'</p>';
+}
+function renderContent(){
+  let h=titleHTML(DOC,state.mode);
+  DOC.paragraphs.forEach((pairs,i)=>{h+=(DOC.id==='motto')?motto(pairs,state.mode):para(pairs,i,DOC.numbered,state.mode);});
+  h+=sigHTML(DOC,state.mode);
+  content.innerHTML=h;
+}
+function applyVars(){
+  const r=document.documentElement.style;
+  r.setProperty('--de-c',state.deC);r.setProperty('--sk-c',state.skC);
+  r.setProperty('--de-w',state.deB?'700':'400');r.setProperty('--sk-w',state.skB?'700':'400');
+  r.setProperty('--de-d',state.deU?'underline':'none');r.setProperty('--sk-d',state.skU?'underline':'none');
+}
+function syncControls(){
+  document.querySelectorAll('.modes button').forEach(b=>b.classList.toggle('on',b.dataset.mode===state.mode));
+  document.querySelectorAll('.grans button').forEach(b=>b.classList.toggle('on',b.dataset.gran===state.gran));
+  var grow=document.querySelector('.grow'); if(grow) grow.classList.toggle('off', state.mode==='de'||state.mode==='sk');
+  document.querySelectorAll('.swatches').forEach(sw=>{
+    const cur=(sw.dataset.lang==='de'?state.deC:state.skC).toLowerCase();
+    sw.querySelectorAll('.sw').forEach(x=>x.classList.toggle('on',x.dataset.c.toLowerCase()===cur));
+  });
+  const map={deB:state.deB,deU:state.deU,skB:state.skB,skU:state.skU};
+  document.querySelectorAll('.tg').forEach(b=>b.classList.toggle('on',map[b.dataset.t]));
+}
+function buildSwatches(){
+  document.querySelectorAll('.swatches').forEach(sw=>{
+    sw.innerHTML=PRESETS.map(p=>'<button class="sw" data-c="'+p.c+'" title="'+p.n+'" style="background:'+p.c+'"></button>').join('');
+  });
+}
+document.addEventListener('click',e=>{
+  const m=e.target.closest('.modes button'); if(m){state.mode=m.dataset.mode;save();renderContent();syncControls();return;}
+  const gr=e.target.closest('.grans button'); if(gr){state.gran=gr.dataset.gran;save();renderContent();syncControls();return;}
+  const sw=e.target.closest('.sw'); if(sw){const lang=sw.closest('.swatches').dataset.lang; if(lang==='de')state.deC=sw.dataset.c; else state.skC=sw.dataset.c; save();applyVars();syncControls();return;}
+  const tg=e.target.closest('.tg'); if(tg){const k=tg.dataset.t;state[k]=!state[k];save();applyVars();syncControls();return;}
+});
+/* ---- dropdown menus ---- */
+function closeDrops(){document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.drop-btn').forEach(b=>b.classList.remove('on'));}
+document.addEventListener('click',function(e){
+  const t=e.target.closest('.drop-btn');
+  if(t){const panel=document.getElementById(t.dataset.target),willOpen=!panel.classList.contains('open');
+    closeDrops(); if(willOpen){panel.classList.add('open');t.classList.add('on');} return;}
+  if(e.target.closest('.dropdown')) return;
+  closeDrops();
+});
+/* ---- German word dictionary popup ---- */
+function openMenu(w,x,y){
+  closeDrops();
+  const e=LEX[w.dataset.id]||{};
+  const surface=w.textContent, lemma=e.l||surface, enc=encodeURIComponent(lemma);
+  const inf=INFO[e.c]||['','other'], posLabel=inf[0], type=inf[1];
+  const links=[];
+  if(type==='verb')links.push(['Časovanie (Verbformen.de)','https://www.verbformen.de/?w='+enc]);
+  links.push(['Význam (Glosbe DE→SK)','https://glosbe.com/de/sk/'+enc]);
+  links.push(['Wiktionary (DE)','https://de.wiktionary.org/wiki/'+enc]);
+  links.push(['DWDS','https://www.dwds.de/wb/'+enc]);
+  const linksHtml=links.map(l=>'<a class="dlink" href="'+l[1]+'" target="_blank" rel="noopener">'+esc(l[0])+'</a>').join('');
+  let tableHtml='';
+  if(e.d){const t=e.d,c=v=>esc(v||'—');
+    tableHtml='<table class="dtab"><tr><th></th><th>Jednotné</th><th>Množné</th></tr>'+
+      '<tr><th>Nom.</th><td>'+c(t.nom_sg)+'</td><td>'+c(t.nom_pl)+'</td></tr>'+
+      '<tr><th>Gen.</th><td>'+c(t.gen_sg)+'</td><td>'+c(t.gen_pl)+'</td></tr>'+
+      '<tr><th>Dat.</th><td>'+c(t.dat_sg)+'</td><td>'+c(t.dat_pl)+'</td></tr>'+
+      '<tr><th>Ak.</th><td>'+c(t.akk_sg)+'</td><td>'+c(t.akk_pl)+'</td></tr></table>';
+  }else if(type==='verb'){tableHtml='<p class="dnote">Úplné časovanie otvoríš odkazom „Časovanie".</p>';}
+  else if(type==='noun'){tableHtml='<p class="dnote">Skloňovanie nájdeš cez Wiktionary.</p>';}
+  const lemmaLine=(e.l&&e.l!==surface)?' · základný tvar: <b>'+esc(e.l)+'</b>':'';
+  const posLine=posLabel?'<p class="dpos"><b>'+esc(posLabel)+'</b>'+lemmaLine+'</p>':'';
+  const sk=(e.s!==undefined)?SEGS[e.s]:'';
+  const skLine=sk?'<p class="dsk"><b>Preklad úseku:</b> '+esc(sk)+'</p>':'';
+  menu.innerHTML='<p class="mtitle">Slovník — „<span class="mword">'+esc(surface)+'</span>"</p>'+posLine+tableHtml+skLine+'<div class="dlinks">'+linksHtml+'</div><div class="mclose"><button id="menuClose">Zavrieť</button></div>';
+  menu.hidden=false;
+  const mw=menu.offsetWidth,mh=menu.offsetHeight;
+  const vw=document.documentElement.clientWidth,vh=document.documentElement.clientHeight;
+  let px=x,py=y+10; const maxX=window.scrollX+vw-mw-8;
+  if(px>maxX)px=maxX; if(px<8)px=8;
+  if(y+10+mh>window.scrollY+vh-8)py=y-mh-10; if(py<window.scrollY+8)py=window.scrollY+8;
+  menu.style.left=px+'px'; menu.style.top=py+'px';
+  document.getElementById('menuClose').onclick=closeMenu;
+}
+function closeMenu(){menu.hidden=true;}
+content.addEventListener('click',e=>{const w=e.target.closest('.w'); if(w){e.stopPropagation(); openMenu(w,e.pageX,e.pageY);}});
+document.addEventListener('click',e=>{if(!menu.hidden && !menu.contains(e.target)) closeMenu();});
+/* ---- init ---- */
+$('#doctitle').textContent = DOC.title ? (DOC.title.de+' · '+DOC.title.sk) : 'Motto';
+buildSwatches();applyVars();renderContent();syncControls();
+
+</script>
+</body>
+</html>
