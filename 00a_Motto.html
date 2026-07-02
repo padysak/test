@@ -38,7 +38,7 @@ a{color:inherit;text-decoration:none;}
 .tg[data-t$="U"]{text-decoration:underline;}
 .tg.on{background:#111;color:#fff;border-color:#111;}
 @media (max-width:560px){#doctitle{display:none;}}
-#content{max-width:820px;margin:0 auto;padding:22px 18px 70px;font-size:1.07em;}
+#content{max-width:820px;margin:0 auto;padding:22px 18px 22px;font-size:1.07em;line-height:1.35;}
 .title{text-align:center;font-weight:700;font-size:1.3em;margin:2px 0;color:#111;}
 .tde{font-family:'Times New Roman',Georgia,serif;margin-top:6px;}
 .tsk{font-family:'Segoe UI',Calibri,system-ui,sans-serif;margin-bottom:14px;}
@@ -72,10 +72,19 @@ em{font-style:italic;}
 .menu a.dlink:hover{background:#e6f0ff;}
 .menu .mclose{margin-top:10px;text-align:right;}
 .menu .mclose button{font:inherit;font-size:12px;padding:4px 10px;border:1px solid #cfcfd4;border-radius:6px;background:#fff;cursor:pointer;}
+body.nonum .pnum{display:none;}
+.optbtn{background:#f0f0ec;border:1px solid #ddd;border-radius:8px;padding:6px 11px;cursor:pointer;font-size:.85em;}
+.optbtn:hover{background:#e7e7e2;}
+.optbtn.on{background:#111;color:#fff;border-color:#111;}
+.lecnav{max-width:820px;margin:0 auto;padding:6px 18px 46px;display:flex;justify-content:space-between;align-items:stretch;gap:10px;}
+.navbtn{display:inline-block;background:#f0f0ec;border:1px solid #ddd;border-radius:8px;padding:10px 13px;font-size:.9em;color:#333;max-width:47%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.navbtn:hover{background:#e7e7e2;}
+.navnext{text-align:right;margin-left:auto;}
+.navempty{visibility:hidden;}
 </style>
 </head>
 <body>
-  <div id="bar">
+<div id="bar">
     <div class="bar-in">
       <a id="back" href="index.html">← Zoznam</a>
       <span id="doctitle"></span>
@@ -99,6 +108,10 @@ em{font-style:italic;}
               <button data-gran="sentence" title="Striedať po vetách">Vetách</button>
               <button data-gran="paragraph" title="Striedať po odstavcoch">Odstavcoch</button>
             </div>
+          </div>
+          <div class="dsec">
+            <div class="dlabel">Číslovanie odstavcov</div>
+            <button class="optbtn" data-numtoggle>Čísla odstavcov</button>
           </div>
           <div class="dhint">Tip: na <b>nemecké slová</b> v texte sa dá klikať — zobrazí sa ich <b>preklad</b> a <b>ohýbanie</b> (skloňovanie podstatných mien, časovanie slovies).</div>
         </div>
@@ -124,13 +137,13 @@ em{font-style:italic;}
     </div>
   </div>
   <div id="content"></div>
+<nav class="lecnav"><span class="navbtn navempty"></span><a class="navbtn navnext" href="00b_Sprievodne_slovo.html">Sprievodné slovo →</a></nav>
 <div id="menu" class="menu" hidden></div>
 <script>
 const DOC = {"id": "motto", "title": null, "numbered": false, "paragraphs": [[{"de": [{"t": "Wer", "id": 0}, {"t": " "}, {"t": "sich", "id": 1}, {"t": " "}, {"t": "nicht", "id": 2}, {"t": " "}, {"t": "müht", "id": 3}, {"t": ",\n"}, {"t": "das", "id": 4}, {"t": " "}, {"t": "Wort", "id": 5}, {"t": " "}, {"t": "des", "id": 6}, {"t": " "}, {"t": "Herrn", "id": 7}, {"t": " "}, {"t": "auch", "id": 8}, {"t": " "}, {"t": "richtig", "id": 9}, {"t": " "}, {"t": "zu", "id": 10}, {"t": " "}, {"t": "erfassen", "id": 11}, {"t": ",\n"}, {"t": "macht", "id": 12}, {"t": " "}, {"t": "sich", "id": 13}, {"t": " "}, {"t": "schuldig", "id": 14}, {"t": "!"}], "sk": [{"t": "Kto sa nenamáha\nSlovo Pánovo aj správne pochopiť,\npreviňuje sa!"}]}]]};
 const LEX = {"0": {"c": "PRON", "s": 0, "l": "wer"}, "1": {"c": "PRON", "s": 0}, "2": {"c": "PART", "s": 0}, "3": {"c": "VERB", "s": 0, "l": "mühen"}, "4": {"c": "ART", "s": 0, "l": "der"}, "5": {"c": "NOUN_N", "s": 0, "d": {"nom_sg": "Wort", "nom_pl": "Wörter", "gen_sg": "Worts", "gen_pl": "Wörter", "dat_sg": "Wort", "dat_pl": "Wörtern", "akk_sg": "Wort", "akk_pl": "Wörter"}}, "6": {"c": "ART", "s": 0, "l": "der"}, "7": {"c": "NOUN_M", "s": 0, "l": "Herr", "d": {"nom_sg": "Herr", "nom_pl": "Herren", "gen_sg": "Herrn", "gen_pl": "Herren", "dat_sg": "Herrn", "dat_pl": "Herren", "akk_sg": "Herrn", "akk_pl": "Herren"}}, "8": {"c": "ADV", "s": 0}, "9": {"c": "ADJ", "s": 0}, "10": {"c": "PART", "s": 0}, "11": {"c": "VERB", "s": 0}, "12": {"c": "VERB", "s": 0, "l": "machen"}, "13": {"c": "PRON", "s": 0}, "14": {"c": "ADJ", "s": 0}};
 const SEGS = ["Kto sa nenamáha\nSlovo Pánovo aj správne pochopiť,\npreviňuje sa!"];
 const INFO = {"VERB": ["Sloveso", "verb"], "NOUN_M": ["Podstatné meno — mužský rod (der)", "noun"], "NOUN_F": ["Podstatné meno — ženský rod (die)", "noun"], "NOUN_N": ["Podstatné meno — stredný rod (das)", "noun"], "ADJ": ["Prídavné meno", "other"], "ADV": ["Príslovka", "other"], "PRON": ["Zámeno / určovateľ", "other"], "ART": ["Člen", "other"], "PREP": ["Predložka", "other"], "CONJ": ["Spojka", "other"], "PART": ["Častica", "other"], "NAME": ["Vlastné meno", "other"]};
-
 const PRESETS=[
  {n:'Čierna',c:'#000000'},
  {n:'Modrá',c:'#1a56db'},
@@ -140,7 +153,7 @@ const PRESETS=[
  {n:'Hnedá',c:'#7a5230'}
 ];
 const LS='posolstvo_site_v2';
-const def={mode:'desk',gran:'phrase',deC:'#000000',skC:'#000000',deB:true,deU:false,skB:false,skU:false};
+const def={mode:'desk',gran:'phrase',deC:'#000000',skC:'#000000',deB:true,deU:false,skB:false,skU:false,nonum:false};
 let state=Object.assign({},def);
 try{const s=JSON.parse(localStorage.getItem(LS));if(s)state=Object.assign(state,s);}catch(e){}
 function save(){try{localStorage.setItem(LS,JSON.stringify(state));}catch(e){}}
@@ -234,6 +247,7 @@ function applyVars(){
   r.setProperty('--de-w',state.deB?'700':'400');r.setProperty('--sk-w',state.skB?'700':'400');
   r.setProperty('--de-d',state.deU?'underline':'none');r.setProperty('--sk-d',state.skU?'underline':'none');
 }
+function applyNonum(){document.body.classList.toggle('nonum',!!state.nonum);}
 function syncControls(){
   document.querySelectorAll('.modes button').forEach(b=>b.classList.toggle('on',b.dataset.mode===state.mode));
   document.querySelectorAll('.grans button').forEach(b=>b.classList.toggle('on',b.dataset.gran===state.gran));
@@ -244,6 +258,7 @@ function syncControls(){
   });
   const map={deB:state.deB,deU:state.deU,skB:state.skB,skU:state.skU};
   document.querySelectorAll('.tg').forEach(b=>b.classList.toggle('on',map[b.dataset.t]));
+  var nt=document.querySelector('[data-numtoggle]'); if(nt) nt.classList.toggle('on',!state.nonum);
 }
 function buildSwatches(){
   document.querySelectorAll('.swatches').forEach(sw=>{
@@ -251,6 +266,7 @@ function buildSwatches(){
   });
 }
 document.addEventListener('click',e=>{
+  const nt=e.target.closest('[data-numtoggle]'); if(nt){state.nonum=!state.nonum;save();applyNonum();syncControls();return;}
   const m=e.target.closest('.modes button'); if(m){state.mode=m.dataset.mode;save();renderContent();syncControls();return;}
   const gr=e.target.closest('.grans button'); if(gr){state.gran=gr.dataset.gran;save();renderContent();syncControls();return;}
   const sw=e.target.closest('.sw'); if(sw){const lang=sw.closest('.swatches').dataset.lang; if(lang==='de')state.deC=sw.dataset.c; else state.skC=sw.dataset.c; save();applyVars();syncControls();return;}
@@ -305,7 +321,8 @@ content.addEventListener('click',e=>{const w=e.target.closest('.w'); if(w){e.sto
 document.addEventListener('click',e=>{if(!menu.hidden && !menu.contains(e.target)) closeMenu();});
 /* ---- init ---- */
 $('#doctitle').textContent = DOC.title ? (DOC.title.de+' · '+DOC.title.sk) : 'Motto';
-buildSwatches();applyVars();renderContent();syncControls();
+buildSwatches();applyVars();applyNonum();renderContent();syncControls();
+
 
 </script>
 </body>
